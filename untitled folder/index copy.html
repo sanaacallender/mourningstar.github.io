@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sanaa Callender – Mourningstar Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&family=Luxurious+Script&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+--bg: #050307;
+--panel: #08040e;
+--panel-soft: #0b0712;
+--text-main: #f5f4f7;
+--text-muted: #a2a2b3;
+--line: #262435;
+--accent: #b67bff;
+--accent-soft: rgba(182, 123, 255, 0.25);
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+min-height: 100vh;
+background: #050307; /* base in case image fails */
+color: var(--text-main);
+font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+position: relative;
+}
+
+/* Animated purple ocean + swan background */
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+background:
+linear-gradient(
+to bottom,
+rgba(120, 40, 180, 0.7),
+rgba(10, 0, 60, 0.9)
+),
+url("ourple.gif") center/cover no-repeat;
+opacity: 1.95; /* stronger so you really see it */
+z-index: 0;
+pointer-events: none;
+animation: oceanDrift 30s ease-in-out infinite alternate;
+}
+
+@keyframes oceanDrift {
+0% {
+transform: translate3d(0, 0, 0) scale(1.03);
+}
+50% {
+transform: translate3d(-24px, 16px, 0) scale(1.06);
+}
+100% {
+transform: translate3d(20px, -18px, 0) scale(1.04);
+}
+}
+
+/* PASSION AND GLORY watermark – silver embossed */
+.watermark {
+position: fixed;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+pointer-events: none;
+z-index: 1;
+}
+
+.watermark-inner {
+margin-left: 2.5rem;
+writing-mode: vertical-rl;
+transform: rotate(180deg);
+font-family: "Luxurious Script", cursive;
+font-size: 1.8rem;
+letter-spacing: 0.22em;
+text-transform: lowercase;
+color: transparent;
+background: linear-gradient(
+180deg,
+#fdfdfd,
+#d5d7dd,
+#a0a3ac,
+#f5f5f7
+);
+-webkit-background-clip: text;
+background-clip: text;
+opacity: 0.16;
+text-shadow:
+0 2px 2px rgba(0, 0, 0, 0.85),
+0 -1px 1px rgba(255, 255, 255, 0.8);
+filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.08));
+}
+
+.page {
+max-width: 1080px;
+margin: 0 auto;
+padding: 32px 18px 60px;
+position: relative;
+z-index: 2;
+}
+
+header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 18px;
+padding-bottom: 14px;
+border-bottom: 1px solid var(--line);
+}
+
+.name-block {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.name {
+font-family: "Cormorant Garamond", serif;
+font-weight: 400;
+text-transform: uppercase;
+letter-spacing: 0.25em;
+font-size: 0.95rem;
+}
+
+.role-line {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.24em;
+color: var(--text-muted);
+}
+
+nav {
+display: flex;
+gap: 14px;
+font-size: 0.78rem;
+text-transform: uppercase;
+letter-spacing: 0.16em;
+}
+
+nav a {
+text-decoration: none;
+color: var(--text-muted);
+padding: 4px 8px;
+border-radius: 999px;
+border: 1px solid transparent;
+transition: all 0.18s ease;
+}
+
+nav a:hover {
+border-color: var(--accent-soft);
+background: rgba(182, 123, 255, 0.1);
+color: var(--text-main);
+}
+
+main {
+display: flex;
+flex-direction: column;
+gap: 28px;
+margin-top: 22px;
+}
+
+/* HERO */
+
+.hero {
+display: grid;
+grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+gap: 20px;
+align-items: flex-start;
+}
+
+.hero-text {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.hero-tagline {
+font-size: 0.78rem;
+text-transform: uppercase;
+letter-spacing: 0.26em;
+color: var(--text-muted);
+}
+
+.hero-heading {
+font-family: "Luxurious Script", cursive;
+font-size: 3rem;
+font-weight: 400;
+letter-spacing: 0.04em;
+line-height: 1.1;
+color: var(--text-main);
+}
+
+.hero-body {
+font-size: 0.9rem;
+color: var(--text-main);
+line-height: 1.8;
+margin-top: 4px;
+}
+
+.obs-title {
+margin-top: 10px;
+font-size: 0.76rem;
+text-transform: uppercase;
+letter-spacing: 0.2em;
+color: var(--text-muted);
+}
+
+.obs-list {
+display: flex;
+flex-wrap: wrap;
+gap: 6px 14px;
+font-size: 0.86rem;
+color: var(--text-muted);
+margin-top: 4px;
+}
+
+.hero-cta-row {
+margin-top: 14px;
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+align-items: center;
+}
+
+.hero-cta {
+padding: 8px 18px;
+border-radius: 999px;
+border: 1px solid var(--accent);
+background: #f7ebff;
+color: #13081d;
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 0.18em;
+text-decoration: none;
+transition: all 0.18s ease;
+}
+
+.hero-cta:hover {
+background: #ffffff;
+}
+
+.hero-note {
+font-size: 0.78rem;
+color: var(--text-muted);
+}
+
+.hero-image {
+border-radius: 20px;
+background: var(--panel-soft);
+border: 1px solid var(--line);
+overflow: hidden;
+}
+
+.hero-image img {
+width: 100%;
+display: block;
+object-fit: cover;
+}
+
+/* GENERIC SECTION */
+
+.section {
+padding-top: 16px;
+border-top: 1px solid var(--line);
+margin-top: 4px;
+}
+
+.section-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+gap: 8px;
+margin-bottom: 10px;
+}
+
+.section-title {
+font-family: "Cormorant Garamond", serif;
+font-style: italic;
+font-size: 1.2rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+}
+
+.section-sub {
+font-size: 0.78rem;
+text-transform: uppercase;
+letter-spacing: 0.18em;
+color: var(--text-muted);
+}
+
+/* GALLERY */
+
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+gap: 14px;
+margin-top: 8px;
+}
+
+.gallery-item {
+border-radius: 14px;
+background: var(--panel);
+border: 1px solid var(--line);
+overflow: hidden;
+padding-bottom: 8px;
+}
+
+.gallery-item img {
+width: 100%;
+height: 260px;
+display: block;
+object-fit: cover;
+transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.gallery-item:hover img {
+transform: scale(1.03);
+filter: saturate(1.1) contrast(1.05);
+}
+
+.gallery-caption {
+padding: 6px 9px 4px;
+font-size: 0.78rem;
+}
+
+.gallery-title {
+letter-spacing: 0.16em;
+text-transform: uppercase;
+display: block;
+margin-bottom: 2px;
+}
+
+.gallery-desc {
+font-style: italic;
+color: var(--text-muted);
+display: block;
+}
+
+/* DJ */
+
+.two-column {
+display: grid;
+grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+gap: 18px;
+margin-top: 6px;
+}
+
+.body-text {
+font-size: 0.9rem;
+color: var(--text-main);
+line-height: 1.8;
+}
+
+.card-soft {
+border-radius: 14px;
+background: var(--panel-soft);
+border: 1px dashed var(--line);
+padding: 12px 12px 14px;
+font-size: 0.84rem;
+color: var(--text-muted);
+}
+
+.upload-label {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 6px 12px;
+border-radius: 999px;
+border: 1px solid var(--accent-soft);
+margin-top: 8px;
+font-size: 0.78rem;
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 0.16em;
+color: var(--text-main);
+background: rgba(182, 123, 255, 0.14);
+}
+
+.upload-label span {
+margin-left: 4px;
+}
+
+input[type="file"] {
+display: none;
+}
+
+.file-list {
+margin-top: 6px;
+font-size: 0.78rem;
+color: var(--text-muted);
+}
+
+.file-list ul {
+list-style: none;
+margin-top: 3px;
+}
+
+.file-list li {
+margin-bottom: 2px;
+}
+
+/* CONTACT */
+
+.contact-grid {
+display: grid;
+grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+gap: 18px;
+margin-top: 6px;
+}
+
+.contact-card {
+border-radius: 14px;
+background: var(--panel-soft);
+border: 1px solid var(--line);
+padding: 14px 12px 14px;
+font-size: 0.9rem;
+}
+
+.mailto {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+margin-top: 10px;
+padding: 7px 16px;
+border-radius: 999px;
+border: 1px solid var(--accent);
+background: #f7ebff;
+color: #120718;
+text-decoration: none;
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 0.18em;
+transition: all 0.18s ease;
+}
+
+.mailto:hover {
+background: #ffffff;
+}
+
+.note-small {
+font-size: 0.78rem;
+color: var(--text-muted);
+margin-top: 6px;
+}
+
+footer {
+margin-top: 26px;
+padding-top: 10px;
+border-top: 1px solid var(--line);
+font-size: 0.76rem;
+color: var(--text-muted);
+letter-spacing: 0.16em;
+text-transform: uppercase;
+text-align: center;
+}
+
+@media (max-width: 860px) {
+.watermark-inner {
+margin-left: 1.2rem;
+font-size: 1.2rem;
+}
+.watermark {
+display: none; /* hide watermark on small screens */
+}
+header {
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+nav {
+flex-wrap: wrap;
+}
+.hero {
+grid-template-columns: minmax(0, 1fr);
+}
+.two-column,
+.contact-grid {
+grid-template-columns: minmax(0, 1fr);
+}
+}
+</style>
+</head>
+<body>
+<!-- passion and glory watermark -->
+<div class="watermark">
+<div class="watermark-inner">
+passion and glory
+passion and glory
+passion and glory
+</div>
+</div>
+
+<div class="page">
+<header>
+<div class="name-block">
+<div class="name">SANAA CALLENDER
+<img src="swan.gif" class="swan-icon" alt= "swan icon">
+</div>
+<div class="role-line">art direction · dj · image</div>
+</div>
+
+<nav>
+<a href="#work">Work</a>
+<a href="#archive">Archive</a>
+<a href="#dj">DJ</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="work">
+<div class="hero-text">
+<div class="hero-tagline">
+visual worlds for soft bodies and loud hearts
+</div>
+<div class="hero-heading">
+lake of silk
+</div>
+<p class="hero-body">
+I build images that feel like a blooming fever dream: skin, petals, pixels and
+light folding into one another. My work leans into wet gloss, saintly glitches
+and animal gestures. The goal is always the same: to hold the moment right before
+something breaks open.
+</p>
+
+<div class="obs-title">current obsessions</div>
+<div class="obs-list">
+<span>silk</span>
+<span>satellites</span>
+<span>swans</span>
+<span>synths</span>
+<span></span>
+</div>
+
+<div class="hero-cta-row">
+<a class="hero-cta" href="mailto:sanaacallender@gmail.com">
+let’s create together
+</a>
+<div class="hero-note">
+Artwork, visual worlds for DJ sets, covers, campaigns, and collaborative mood-board dreaming.
+</div>
+</div>
+</div>
+
+<div class="hero-image">
+<!-- replace hero-main.jpg with your own portrait / artwork -->
+<img src="hero-main.jpg" alt="Artwork or portrait by Sanaa Callender" />
+</div>
+</section>
+
+<!-- ARCHIVE -->
+<section class="section" id="archive">
+<div class="section-header">
+<div class="section-title">Archive</div>
+<div class="section-sub">first petals of this world</div>
+</div>
+
+<!-- UPDATED GALLERY SECTION -->
+<div class="gallery-grid">
+
+  <figure class="gallery-item">
+    <img src="p.jpeg" alt="glossed body form dissolving into soft violet light" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">petal voltage</span>
+      <span class="gallery-desc">a figure blooming into electric lilac haze</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="b.jpeg" alt="backlit silhouette layered with shimmering silk textures" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">backlit hymn</span>
+      <span class="gallery-desc">a silhouette wrapped in metallic silk and quiet fire</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="c.jpeg" alt="swans drifting through a dreamlike purple ocean scene" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">celestial swans</span>
+      <span class="gallery-desc">faint swans drifting through a violet tidal dream</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="tr.jpeg" alt="layered face and text repeating in soft spectral echoes" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">tremor reprise</span>
+      <span class="gallery-desc">spectral echoes of a face repeating like whispered prayer</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="fr.jpeg" alt="orchid-toned digital collage mixing feathers, petals, and movement" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">feather reef</span>
+      <span class="gallery-desc">petals and plumage braided in bright orchid currents</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="h.jpeg" alt="soft luminous body submerged in lace and watery reflections" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">hallowed lace</span>
+      <span class="gallery-desc">a body shimmering beneath lace and waterlight</span>
+    </figcaption>
+  </figure>
+
+  <figure class="gallery-item">
+    <img src="f.jpeg" alt="glitch-infused portrait layered with dark florals and radiant symbols" />
+    <figcaption class="gallery-caption">
+      <span class="gallery-title">floodshift</span>
+      <span class="gallery-desc">dark florals and radiant symbols breaking through distortion</span>
+    </figcaption>
+  </figure>
+
+</div>
+</section>
+
+<!-- DJ -->
+<section class="section" id="dj">
+<div class="section-header">
+<div class="section-title">DJ & sound</div>
+<div class="section-sub">sets as moving collages</div>
+</div>
+
+<div class="two-column">
+<div class="body-text">
+I move between soft, melancholic textures and sudden rushes of euphoria,
+the same way my images hold both tenderness and rupture.
+Each mix is built as a little altar.
+</div>
+
+<div class="card-soft">
+Future mixes & links
+
+<div class="note-small">
+When you have SoundCloud or Mixcloud links, you can paste the embed code here,
+or replace this box with your own players.
+</div>
+
+<label class="upload-label">
+<span>＋ attach future mixes</span>
+<input type="file" id="mixUpload" multiple accept="audio/*" />
+</label>
+
+<div class="file-list" id="mixFileList"></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+<div class="section-header">
+<div class="section-title">Contact</div>
+<div class="section-sub">bookings & collaborations</div>
+</div>
+
+<div class="contact-grid">
+<div class="contact-card">
+Email
+
+<a class="mailto" href="mailto:sanaacallender@gmail.com">
+sanaacallender@gmail.com
+</a>
+
+<div class="note-small">
+Instagram: @Mymourningstar    SoundCloud: @Nymphsong57    Tumblr: mueredepena.tumblr.com 
+</div>
+</div>
+
+<div class="body-text">
+This page is a simple index of what I’m making:
+a map of images, sounds and ideas in progress.
+Everything here is a sketch toward something bigger.
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+© <span id="year"></span> Sanaa Callender · Mourningstar Studio
+</footer>
+</div>
+
+<script>
+// footer year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// simple file list for future mixes
+function handleFileList(inputId, listId) {
+const input = document.getElementById(inputId);
+const list = document.getElementById(listId);
+if (!input || !list) return;
+
+input.addEventListener("change", () => {
+const files = Array.from(input.files || []);
+if (!files.length) {
+list.innerHTML = "";
+return;
+}
+const items = files.map(f => "<li>" + f.name + "</li>").join("");
+list.innerHTML = "<span>selected:</span><ul>" + items + "</ul>";
+});
+}
+
+handleFileList("mixUpload", "mixFileList");
+</script>
+</body>
+</html>
